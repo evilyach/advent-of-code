@@ -3,8 +3,14 @@ class Day1_NotQuiteLisp:
         self.filename = filename
         self.opening_par = 0
         self.closing_par = 0
+        self.diff = 0
 
-    def count_par(self):
+
+    def calc_diff(self):
+        self.diff = self.opening_par - self.closing_par
+
+
+    def first_half(self):
         with open(self.filename, "r") as file:
             for line in file:
                 for character in line:
@@ -13,9 +19,33 @@ class Day1_NotQuiteLisp:
                     if (character is ')'):
                         self.closing_par += 1
 
-    def first_half(self):
-        self.count_par()
-        print(self.opening_par - self.closing_par)
+        self.calc_diff()
+        print(self.diff)
 
-solution = Day1_NotQuiteLisp('./file.txt')
-solution.first_half()
+
+    def second_half(self):
+        counter = 1
+
+        with open(self.filename, "r") as file:
+            for line in file:
+                for character in line:
+                    if (character is '('):
+                        self.opening_par += 1
+                    if (character is ')'):
+                        self.closing_par += 1
+
+                    self.calc_diff()
+
+                    if (self.diff == -1):
+                        print("{} at {}".format(counter, self.diff))
+                        return
+
+                    counter += 1
+
+
+if __name__ == "__main__":
+    solution1 = Day1_NotQuiteLisp('./file.txt')
+    solution1.first_half()
+
+    solution2 = Day1_NotQuiteLisp('./file.txt')
+    solution2.second_half()
