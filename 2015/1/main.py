@@ -1,4 +1,4 @@
-class Day1_NotQuiteLisp:
+class NotQuiteLisp:
     def __init__(self, filename):
         self.filename = filename
         self.opening_par = 0
@@ -44,8 +44,6 @@ class Day1_NotQuiteLisp:
 
 
 if __name__ == "__main__":
-    solution1 = Day1_NotQuiteLisp('./file.txt')
-    solution1.first_half()
-
-    solution2 = Day1_NotQuiteLisp('./file.txt')
-    solution2.second_half()
+    solution = NotQuiteLisp('./input.txt')
+    solution.first_half()
+    solution.second_half()
